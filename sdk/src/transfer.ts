@@ -1,0 +1,1 @@
+// Transfer warehouse receipt token

@@ -1,0 +1,23 @@
+{
+  "name": "@farmledge-labs/protocol-sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for the farmledge-protocol warehouse receipt tokenization protocol",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src --ext .ts"
+  },
+  "dependencies": {
+    "@stellar/stellar-sdk": "12.3.0"
+  },
+  "devDependencies": {
+    "typescript": "5.4.5"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/farmledge-labs/farmledge-protocol"
+  }
+}

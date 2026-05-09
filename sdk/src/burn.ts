@@ -1,0 +1,1 @@
+// Burn warehouse receipt token

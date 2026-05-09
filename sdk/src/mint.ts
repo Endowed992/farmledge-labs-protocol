@@ -1,0 +1,1 @@
+// Mint warehouse receipt token
