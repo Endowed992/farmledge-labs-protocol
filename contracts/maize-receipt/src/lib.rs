@@ -6,7 +6,7 @@ mod storage;
 pub use errors::ContractError;
 use storage::DataKey;
 
-use soroban_sdk::{contract, contractimpl, Address, Env};
+use soroban_sdk::{contract, contractimpl, Address, Env, String};
 
 #[contract]
 pub struct MaizeReceiptContract;
@@ -31,7 +31,7 @@ mod tests {
     #[test]
     fn test_init_sets_admin() {
         let env = Env::default();
-        let contract_id = env.register(MaizeReceiptContract, ());
+        let contract_id = env.register_contract(None, MaizeReceiptContract);
         let client = MaizeReceiptContractClient::new(&env, &contract_id);
 
         let admin = Address::generate(&env);
@@ -47,7 +47,7 @@ mod tests {
     #[test]
     fn test_init_sets_counter_to_zero() {
         let env = Env::default();
-        let contract_id = env.register(MaizeReceiptContract, ());
+        let contract_id = env.register_contract(None, MaizeReceiptContract);
         let client = MaizeReceiptContractClient::new(&env, &contract_id);
 
         let admin = Address::generate(&env);
@@ -63,7 +63,7 @@ mod tests {
     #[test]
     fn test_init_rejects_double_call() {
         let env = Env::default();
-        let contract_id = env.register(MaizeReceiptContract, ());
+        let contract_id = env.register_contract(None, MaizeReceiptContract);
         let client = MaizeReceiptContractClient::new(&env, &contract_id);
 
         let admin = Address::generate(&env);
@@ -74,5 +74,21 @@ mod tests {
             result,
             Err(Ok(ContractError::AlreadyInitialized))
         );
+    }
+
+    #[test]
+    fn test_datakey_variants_exist() {
+        let env = Env::default();
+        let _admin = DataKey::Admin.clone();
+        let _custodians = DataKey::Custodians.clone();
+        let _token_meta = DataKey::TokenMeta(String::from_str(&env, "token_id"));
+        let _owner = DataKey::Owner(String::from_str(&env, "token_id"));
+        let _token_counter = DataKey::TokenCounter.clone();
+
+        let _ = _admin;
+        let _ = _custodians;
+        let _ = _token_meta;
+        let _ = _owner;
+        let _ = _token_counter;
     }
 }
