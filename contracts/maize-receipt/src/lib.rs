@@ -6,7 +6,22 @@ mod storage;
 pub use errors::ContractError;
 use storage::DataKey;
 
-use soroban_sdk::{contract, contractimpl, Address, Env, Map, String};
+use soroban_sdk::{contract, contractimpl, contracttype, Address, Env, Map, String};
+
+#[contracttype]
+#[derive(Clone, Debug, PartialEq)]
+pub struct TokenMetadata {
+    pub token_id: String,
+    pub commodity: String,
+    pub grade: String,
+    pub bag_count: u32,
+    pub weight_per_bag_kg: u32,
+    pub total_weight_kg: u32,
+    pub warehouse_id: String,
+    pub custodian: Address,
+    pub deposit_ts: u64,
+    pub is_locked: bool,
+}
 
 #[contract]
 pub struct MaizeReceiptContract;

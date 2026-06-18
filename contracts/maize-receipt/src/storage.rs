@@ -8,5 +8,4 @@ pub enum DataKey {
     TokenMeta(String),
     Owner(String),
     TokenCounter,
-    Custodians,
 }
